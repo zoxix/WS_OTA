@@ -25,8 +25,8 @@ deploy:
   skip_cleanup: true
   overwrite: true
   provider: releases
-  api_key: $GH_TOKEN
+  api_key: $Token
   file: ".pio/build/nodemcuv2/firmware.bin"
   on:
-    repo: fahmikhl/buff
+    repo: zoxix/WS_OTA
     all_branches: true
