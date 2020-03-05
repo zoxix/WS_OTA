@@ -1,0 +1,32 @@
+language: python
+python:
+- '2.7'
+sudo: false
+cache:
+  directories:
+  - "~/.platformio"
+env:
+- PLATFORMIO_CI_SRC=src/
+
+before_install:
+- export TZ=Asia/Jakarta
+
+install:
+- pip install -U platformio
+- platformio update 
+- platformio lib install 567
+- export TRAVIS_TAG=${TRAVIS_TAG:-$(date +'%y%m%d%H%M%S')}
+
+script:
+- platformio run -e nodemcuv2
+- platformio --version
+
+deploy:
+  skip_cleanup: true
+  overwrite: true
+  provider: releases
+  api_key: $GH_TOKEN
+  file: ".pio/build/nodemcuv2/firmware.bin"
+  on:
+    repo: fahmikhl/buff
+    all_branches: true
