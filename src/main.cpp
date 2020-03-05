@@ -45,17 +45,19 @@ void setup()
 {
   // put your setup code
   updateCheck.start();
-  wifiManager.autoConnect("DevOps");
+  Serial.begin(9600);
+  wifiManager.autoConnect("IB Jenius");
   pinMode(LED, OUTPUT);
 }
 
 void loop()
 {
   updateCheck.update();
+  Serial.println("IB cerdas");
   digitalWrite(LED, LOW);
-  delay(1000);
+  delay(100);
   digitalWrite(LED, HIGH);
-  delay(500);
+  delay(100);
 
   if (doUpdateCheck == true)
   {
